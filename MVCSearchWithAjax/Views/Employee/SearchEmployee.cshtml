@@ -1,0 +1,30 @@
+﻿<div>
+    Name
+    @Html.TextBox("name")
+    <input type="button" value="Search" id="btnSearch" />
+</div>
+<div id="divResult"></div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnSearch').click(function () {
+                $.ajax({
+                    url: "/Employee/DetailsEmployee",
+                    data: { name: $('#name').val() },
+                    success: function (result) {
+                        $('#divResult').html(result);
+                    },
+                    error: function () {
+                        alert('error');
+                    },
+                    failure: function () {
+                        alert('failure');
+                    }
+
+                })
+            });
+        });
+    </script>
+    
+    }
